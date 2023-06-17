@@ -1,5 +1,7 @@
 package mosh.linklist;
 
+import com.sun.nio.sctp.IllegalReceiveException;
+
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -143,6 +145,32 @@ public class LinkedList {
         first = previous; //because at this point we are going to get the first point
     }
 
+    public int getKthFromTheLast(int k) {
+
+        if (isEmpty()) throw new IllegalStateException();
+        var a = first;
+        var b = first;
+        for (int i = 0; i < k - 1; i++) {
+            b = b.next;
+            if (b == null) throw new IllegalReceiveException();
+        }
+        while (b != last) {
+            a = a.next;
+            b = b.next;
+        }
+        return a.value;
+    }
+
+    public int getKthFormTheFirst(int k){
+        if (isEmpty()) throw new IllegalStateException();
+        var a = first;
+        for (int i = 0; i < k - 1; i++) {
+            a = a.next;
+            if (a==null) throw new IllegalReceiveException();
+        }
+        return a.value;
+    }
+
     public static void main(String[] args) {
         var linkList = new LinkedList();
 
@@ -167,6 +195,10 @@ public class LinkedList {
         linkList.reverse();
         var arrayRev = linkList.toArray();
         System.out.println(Arrays.toString(arrayRev));
+
+//        System.out.println(linkList.getKthFromTheLast(3));
+
+        System.out.println(linkList.getKthFormTheFirst(5));
 
     }
 }
