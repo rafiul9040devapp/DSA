@@ -171,6 +171,15 @@ public class LinkedList {
         return a.value;
     }
 
+    public void displayLinkList(){
+        var current = first;
+        while (current!=null){
+            System.out.print(current.value+"->");
+            current = current.next;
+        }
+        System.out.print("END");
+    }
+
     public static void main(String[] args) {
         var linkList = new LinkedList();
 
@@ -199,6 +208,8 @@ public class LinkedList {
 //        System.out.println(linkList.getKthFromTheLast(3));
 
         System.out.println(linkList.getKthFormTheFirst(5));
+
+        linkList.displayLinkList();
 
     }
 }
